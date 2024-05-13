@@ -37,6 +37,7 @@ class CustomTextField extends StatelessWidget {
       this.textAlignVertical,
       this.parentDecoration,
       this.fillColor,
+      this.labelText,
       this.errorStyle});
   final bool isSearchField;
   final Widget? prefixIcon;
@@ -71,6 +72,7 @@ class CustomTextField extends StatelessWidget {
   final Color? fillColor;
 
   final TextStyle? errorStyle;
+  final String? labelText;
 
   @override
   Widget build(BuildContext context) {
@@ -97,17 +99,18 @@ class CustomTextField extends StatelessWidget {
         decoration: decoration ??
             InputDecoration(
                 hintText: hintText,
-                label: isLabelShown ?? false ? Text(hintText ?? "") : null,
+                label: labelText != null ? Text(labelText ?? "") : null,
                 // label: Text(hintText),
                 hintStyle: hintStyle ??
                     Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppColorUtils.textDark.withOpacity(0.7)),
+                        color: AppColorUtils.textDark.withOpacity(0.6)),
                 counterText: "",
                 filled: isFilled,
+                labelStyle: Theme.of(context).textTheme.titleLarge,
                 fillColor: isEnabled!
                     ? fillColor ?? AppColorUtils.textLight
                     : AppColorUtils.textLight,
-                border: borderStyle(),
+                border: borderStyle(color: borderColor),
                 isDense: isDense,
                 prefixIcon:
                     isSearchField ? const Icon(Icons.search_sharp) : prefixIcon,
@@ -115,15 +118,15 @@ class CustomTextField extends StatelessWidget {
                 suffixIcon: suffixIcon,
                 errorStyle: errorStyle,
                 disabledBorder: borderStyle(),
-                enabledBorder: borderStyle(),
-                focusedBorder: borderStyle()),
+                enabledBorder: borderStyle(color: borderColor),
+                focusedBorder: borderStyle(color: Colors.blue)),
       ),
     );
   }
 
-  OutlineInputBorder borderStyle() {
+  OutlineInputBorder borderStyle({Color? color}) {
     return OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadius ?? 12),
-        borderSide: const BorderSide(width: 1, color: Colors.transparent));
+        borderSide: BorderSide(width: 1.5, color: color ?? Colors.transparent));
   }
 }

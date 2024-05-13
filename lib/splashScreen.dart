@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:taskeye/utils/app_constants.dart';
 import 'package:taskeye/screens/auth/register_page_phone.dart';
 import 'package:taskeye/screens/channel_homepage.dart';
@@ -12,6 +13,7 @@ import 'package:http/http.dart' as http;
 // import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:shimmer/shimmer.dart';
+import 'package:taskeye/utils/route_constants.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -90,15 +92,12 @@ class _SplashState extends State<Splash> {
   bool isLoggedIn = false;
   final box = GetStorage();
   checkUserLoggedInStatus() async {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) async {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('User is currently signed out!');
-        await Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const RegisterPagePhone()));
+        Get.offAllNamed(AppRouteConstants.signInRoute);
       } else {
         print('User is signed in!');
-        await Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const ChannelHomePage()));
+        Get.offAllNamed(AppRouteConstants.homepageRoute);
       }
     });
     // if (box.read('isloggedIn') == true) {

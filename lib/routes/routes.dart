@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:taskeye/providers/bindings/auth_binding.dart';
 import 'package:taskeye/providers/bindings/profile_binding.dart';
 import 'package:taskeye/screens/auth/register_page_phone.dart';
+import 'package:taskeye/screens/channel_homepage.dart';
 import 'package:taskeye/screens/users/add_update_users.dart';
 import 'package:taskeye/splashScreen.dart';
 import 'package:taskeye/utils/route_constants.dart';
@@ -21,6 +22,12 @@ class Routes {
     GetPage(
         name: AppRouteConstants.profileRoute,
         page: () => const ProfileScreen(),
+        binding: ProfleBinding()
+        // binding: DataBinding(),
+        ),
+    GetPage(
+        name: AppRouteConstants.homepageRoute,
+        page: () => const ChannelHomePage(),
         binding: ProfleBinding()
         // binding: DataBinding(),
         ),

@@ -11,11 +11,12 @@ import '../models/channel_model.dart';
 import 'apis/firebaseapi.dart';
 import 'homepage.dart';
 
-class ChannelHomePage extends GetView<HomepageController> {
+class ChannelHomePage extends StatelessWidget {
   const ChannelHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final HomepageController controller = Get.put(HomepageController());
     return Scaffold(
         backgroundColor: AppColorUtils.bgColor,
         appBar: AppBar(

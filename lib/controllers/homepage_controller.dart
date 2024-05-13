@@ -4,5 +4,5 @@ import 'package:taskeye/models/channel_model.dart';
 
 class HomepageController extends GetxController {
   List<ChannelModel> channels = [];
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
 }

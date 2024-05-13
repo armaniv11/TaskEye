@@ -5,6 +5,7 @@ import 'package:taskeye/controllers/profile_controller.dart';
 class HomepageBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => HomepageController());
+    // Get.lazyPut(() => HomepageController());
+    Get.put(() => HomepageController());
   }
 }
